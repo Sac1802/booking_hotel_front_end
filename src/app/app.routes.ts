@@ -8,15 +8,15 @@ export const routes: Route[] = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./search/search.routes').then(m => m.searchRoutes)
+        loadChildren: () => import('./features/search/search.routes').then(m => m.searchRoutes)
       },
       {
         path: 'auth',
-        loadChildren: () => import('./auth/auth.routes').then(m => m.authRoutes)
+        loadChildren: () => import('./features/auth/auth.routes').then(m => m.authRoutes)
       },
       {
         path: 'user',
-        loadChildren: () => import('./user/user.routes').then(m => m.userRoutes)
+        loadChildren: () => import('./features/user/user.routes').then(m => m.userRoutes)
       }
     ]
   }

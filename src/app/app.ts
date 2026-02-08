@@ -1,6 +1,6 @@
 import { Component, signal, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { IconService } from './services/icon.service';
+import { IconService } from './core/services/icon.service';
 
 @Component({
   selector: 'app-root',
