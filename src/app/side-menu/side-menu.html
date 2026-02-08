@@ -1,0 +1,20 @@
+<aside class="sidemenu">
+    <div class="brand">
+        <mat-icon class="hotel-icon" svgIcon="solid_hotel"></mat-icon>
+        <h2 class="brand-title">Traveler</h2>
+    </div>
+
+    <div class="auth-section">
+        <div class="user-icon-wrapper">
+            <mat-icon class="user-icon">person</mat-icon>
+        </div>
+
+        @if (!auth.isLoggedIn()) {
+        <a routerLink="/auth" class="login-link">
+            Ingresar
+        </a>
+        } @else {
+        <p class="user-email">{{ auth.userEmail() }}</p>
+        }
+    </div>
+</aside>

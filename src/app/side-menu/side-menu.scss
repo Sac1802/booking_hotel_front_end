@@ -1,0 +1,77 @@
+.sidemenu {
+  width: 160px;
+  height: 100vh;
+  padding-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 3px solid rgba(0, 0, 0, 0.08);
+}
+
+
+.brand {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 25px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.hotel-icon {
+  width: 80px;
+  height: 80px;
+  font-size: 80px;
+}
+
+.brand-title {
+  margin-top: 8px;
+  font-size: 20px;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
+}
+
+.auth-section {
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.user-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-icon {
+  font-size: 55px;
+  width: 45px;
+  height: 50px;
+  line-height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--mat-sys-tertiary);
+}
+
+.login-link {
+  width: 120px;
+  padding: 8px 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 6px;
+  color: black;
+  transition: all 0.2s ease;
+}
+
+.user-email {
+  font-size: 13px;
+  text-align: center;
+  padding: 0 10px;
+}

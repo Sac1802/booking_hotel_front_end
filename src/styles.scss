@@ -2,35 +2,14 @@
 
 @include mat.core();
 
-$typography: mat.define-typography-config(
-  $font-family: 'Encode Sans Semi Condensed, sans-serif',
-);
+$theme: mat.define-theme();
 
-$primary: mat.define-palette((
-  500: #1E3D58,
-  contrast: (
-    500: white,
-  )
-));
-
-$accent: mat.define-palette((
-  500: #CDA349,
-  contrast: (
-    500: black,
-  )
-));
-
-$warn: mat.define-palette(mat.$red-palette);
-
-$theme: mat.define-light-theme((
-  color: (
-    primary: $primary,
-    accent: $accent,
-    warn: $warn,
-  ),
-));
-
-@include mat.all-component-themes($theme);
+html {
+  @include mat.all-component-themes($theme);
+  
+  --mat-sys-primary: #1E3D58;
+  --mat-sys-tertiary: #CDA349;
+}
 
 body {
   margin: 0;
