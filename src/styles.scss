@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$typography: mat.define-typography-config(
+  $font-family: 'Encode Sans Semi Condensed, sans-serif',
+);
+
+$primary: mat.define-palette((
+  500: #1E3D58,
+  contrast: (
+    500: white,
+  )
+));
+
+$accent: mat.define-palette((
+  500: #CDA349,
+  contrast: (
+    500: black,
+  )
+));
+
+$warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+  ),
+));
+
+@include mat.all-component-themes($theme);
+
+body {
+  margin: 0;
+  font-family: 'Encode Sans Semi Condensed', sans-serif;
+  background: white;
+}
