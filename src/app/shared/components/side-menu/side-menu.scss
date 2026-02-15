@@ -58,7 +58,7 @@
   color: var(--mat-sys-tertiary);
 }
 
-.login-link {
+.login-link, .logout {
   width: 120px;
   padding: 8px 0;
   text-align: center;
@@ -70,8 +70,3 @@
   transition: all 0.2s ease;
 }
 
-.user-email {
-  font-size: 13px;
-  text-align: center;
-  padding: 0 10px;
-}

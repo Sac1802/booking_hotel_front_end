@@ -13,8 +13,10 @@
         <a routerLink="/auth" class="login-link">
             Ingresar
         </a>
-        } @else {
-        <p class="user-email">{{ auth.userEmail() }}</p>
+        }@else {
+        <a (click)="logout()" routerLink="/" class="logout">
+            Cerrar sesión
+        </a>
         }
     </div>
 </aside>

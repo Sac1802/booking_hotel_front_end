@@ -1,0 +1,22 @@
+<form class="conatiner" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-login">
+        <p class="title">Login</p>
+        <div class="inputs">
+            <input type="email" formControlName="email" class="input-email" placeholder="Email">
+            @if (form.get('email')?.errors?.['required'] && form.get('email')?.touched) {
+            <div class="error">Email is required</div>
+            }
+            @if (form.get('email')?.errors?.['email'] && form.get('email')?.touched) {
+            <div class="error">Invalid email format</div>
+            }
+            <input type="password" formControlName="password" class="input-password" placeholder="Password">
+            @if (form.get('password')?.errors?.['required'] && form.get('password')?.touched) {
+            <div class="error">Password is required</div>
+            }
+            @if(error() === 401) {
+            <div class="error">Credenciales inválidas</div>
+            }
+        </div>
+        <button type="submit" class="btn-login" [disabled]="loading()">Login</button>
+    </div>
+</form>

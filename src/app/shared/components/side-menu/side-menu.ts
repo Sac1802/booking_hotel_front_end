@@ -13,4 +13,8 @@ import { AuthService } from '../../../core/services/auth.service';
 })
 export class SideMenu {
   auth = inject(AuthService);
+
+  logout(){
+    this.auth.logout();
+  }
 }

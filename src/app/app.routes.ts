@@ -8,7 +8,7 @@ export const routes: Route[] = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./features/search/search.routes').then(m => m.searchRoutes)
+        loadChildren: () => import('./features/home/home.routes').then(m => m.homeRoutes)
       },
       {
         path: 'auth',
