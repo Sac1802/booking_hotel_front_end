@@ -1,0 +1,10 @@
+<form (submit)="$event.preventDefault(); emitSearch()">
+    <input [(ngModel)]="filter.city" name="city" placeholder="Ciudad">
+    <input type="date" [(ngModel)]="filter.startDate" name="startDate" placeholder="Inicio de Estadia">
+    <input type="date" [(ngModel)]="filter.endDate" name="endDate" placeholder="Final de estadia">
+    <input type="number" [(ngModel)]="filter.peopleCount" name="peopleCount" placeholder="Cantidad de Personas">
+    <input type="number" [(ngModel)]="filter.minPrice" name="minPrice" placeholder="Precio minimo">
+    <input type="number" [(ngModel)]="filter.maxPrice" name="maxPrice" placeholder="Precio Maximo">
+
+    <button type="submit">Buscar</button>
+</form>

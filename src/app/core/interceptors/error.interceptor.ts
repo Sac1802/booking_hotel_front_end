@@ -8,6 +8,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const auth = inject(AuthService);
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
+      let errorMessage = 'Ocurrió un error inesperado';
       if (error.status >= 400) {
         const backendError = error.error as IBackendError;
 
@@ -17,10 +18,14 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
           error: backendError?.error || 'Unknow Error',
         });
       }
-      if (error.status == 401) {
+      if (error.status == 400) {
+        errorMessage = 'Los Datos enviados son invalidos';
+      } else if (error.status == 401) {
         auth.logout();
+      } else if (error.status == 404) {
+        errorMessage = 'No se encontraron datos';
       }
-      return throwError(() => error);
+      return throwError(() => new Error(errorMessage));
     }),
   );
 };

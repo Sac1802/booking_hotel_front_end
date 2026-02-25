@@ -1,0 +1,7 @@
+<div class="list-container">
+    @for (item of hotels(); track $index) {
+    <app-hotel-card [data]="item"></app-hotel-card>
+    }@empty {
+    <p>No se encontraron hoteles disponibles</p>
+    }
+</div>

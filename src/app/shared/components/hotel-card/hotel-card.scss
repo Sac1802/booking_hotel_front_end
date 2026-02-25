@@ -1,0 +1,70 @@
+.hotel-card {
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    margin: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.hotel-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.name-hotel {
+    margin: 0, 0 5px 0;
+    color: var(--mat-sys-primary);
+    font-size: 1.4rem;
+}
+
+.location-hotel {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.9rem;
+    color: var(--mat-sys-primary);
+    margin: 10px;
+}
+
+.desc-hotel {
+    font-size: 0.9rem;
+    color: var(--mat-sys-primary);
+    margin: 15px;
+}
+
+.promotion-list {
+    background: white;
+    color: var(--mat-sys-primary);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    margin-right: 8px;
+    border: 1px solid var(--mat-sys-primary);
+}
+
+.btn-book {
+    background-color: var(--mat-sys-tertiary);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-book:hover {
+    background-color: var(--mat-sys-tertiary);
+}
+
+.suggestion-serction {
+    margin: 15px;
+}
+
+.rooms-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
