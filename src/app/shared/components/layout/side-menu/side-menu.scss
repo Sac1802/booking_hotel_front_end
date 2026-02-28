@@ -1,6 +1,6 @@
 .sidemenu {
   width: 160px;
-  height: 100vh;
+  height: 100%;
   padding-top: 22px;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,8 @@
   color: var(--mat-sys-tertiary);
 }
 
-.login-link, .logout {
+.login-link,
+.logout {
   width: 120px;
   padding: 8px 0;
   text-align: center;
@@ -69,4 +70,3 @@
   color: black;
   transition: all 0.2s ease;
 }
-

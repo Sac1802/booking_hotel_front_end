@@ -1,0 +1,16 @@
+.home-container {
+    display: flex;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.filters-panel {
+    flex-shrink: 0;
+    height: 100%;
+}
+
+.results-panel {
+    flex: 1;
+    min-width: 0;
+    padding: 24px;
+}

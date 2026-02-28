@@ -1,23 +1,38 @@
 <div class="hotel-card">
     <div class="hotel-header">
+
+        <div class="hotel-icon">
+            <mat-icon class="icon-image">image</mat-icon>
+        </div>
+
         <div class="hotel-info">
-            <h2 class="name-hotel">{{data().name}}</h2>
+            <h2 class="name-hotel">{{name()}}</h2>
             @if (location()) {
             <p class="location-hotel">
                 <mat-icon>location_on</mat-icon> {{location()}}
             </p>
             }
-            <p class="desc-hotel">{{data().description}}</p>
-            <div class="promotion-list">
-                @for (item of promo()!; track item) {
-                <span>{{item}}</span>
-                }
-            </div>
+            <p class="desc-hotel">{{description()}}</p>
         </div>
 
-        <div class="action">
-            <button class="btn-book">Book</button>
+        <div class="promotion-section">
+            <p class="promo-title">Promociones Disponibles</p>
+            <ul class="promotion-list">
+                <li class="promo-item"><span class="promo-dot"></span>Carnaval</li>
+                <li class="promo-item"><span class="promo-dot"></span>Familias de más de 8 integrantes</li>
+                <li class="promo-item"><span class="promo-dot"></span>Niños menores de 5 años no pagan estadía</li>
+                <li class="promo-item"><span class="promo-dot"></span>Desayunos incluidos</li>
+            </ul>
         </div>
+
+
+        <div class="action">
+            <button class="btn-book">
+                <mat-icon>calendar_month</mat-icon>
+                Book
+            </button>
+        </div>
+
     </div>
 
     @if(suggestion().length > 0){
@@ -28,5 +43,9 @@
             }
         </div>
     </div>
+    }
+
+    @if(totalPrice()){
+        <span class="total-price">Total: {{ totalPrice() | currency }}$</span>
     }
 </div>

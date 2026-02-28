@@ -1,15 +1,19 @@
 <div class="home-container">
-    <app-search-form (search)="onSearch($event)"></app-search-form>
+    <aside class="filters-panel">
+        <app-search-form (search)="onSearch($event)"></app-search-form>
+    </aside>
 
-    @if(errorMessage()){
-    <div class="error">
-        <p>{{errorMessage()}}</p>
+    <div class="results-panel">
+        @if(errorMessage()){
+        <div class="error">
+            <p>{{errorMessage()}}</p>
+        </div>
+        }
+
+        @if(searchService.isLoading()){
+        <p>Cargando Resultados</p>
+        }@else {
+        <app-hotel-list [hotels]="hotelsRes()"></app-hotel-list>
+        }
     </div>
-    }
-
-    @if(searchService.isLoading()){
-    <p>Cargando Resultados</p>
-    }@else {
-    <app-hotel-list [hotels]="hotelsRes()"></app-hotel-list>
-    }
 </div>

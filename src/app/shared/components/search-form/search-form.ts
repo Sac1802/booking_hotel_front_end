@@ -1,17 +1,27 @@
-import { Component, output } from '@angular/core';
+import { Component, output, inject, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSliderModule } from '@angular/material/slider';
 import { RoomFilter } from '../../../core/interface/room-filter.interface';
+import { HotelService } from '../../../core/services/hotel.service';
 
 @Component({
   selector: 'app-search-form',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, MatIconModule, MatSliderModule],
   templateUrl: './search-form.html',
   styleUrl: './search-form.scss',
 })
 export class SearchForm {
+  private hotelService = inject(HotelService);
   filter: RoomFilter = {};
   search = output<RoomFilter>();
+
+  availableLocations = computed(() => {
+    const hotels = this.hotelService.hotels();
+    const locations = hotels.map(h => h.city);
+    return [...new Set(locations)];
+  });
 
   emitSearch() {
     const cleanFilter: RoomFilter = { ...this.filter };
