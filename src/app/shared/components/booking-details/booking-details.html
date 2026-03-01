@@ -1,0 +1,79 @@
+<div class="booking-details-page">
+  @if (loading()) {
+  <div class="state-card">
+    <p>Cargando detalle de la reserva...</p>
+  </div>
+  } @else if (error() || errorMessage()) {
+  <div class="state-card error">
+    <p>{{ error() }}</p>
+    <button class="secondary-btn" (click)="cancel()">Volver</button>
+  </div>
+  } @else {
+  @if (summaryDetails(); as summary) {
+  <section class="details-card">
+    <h2 class="title">Detalle de la Reserva</h2>
+
+        <div class="dates-chip">
+          <span>
+            <mat-icon>flight_land</mat-icon>
+            Llegada: {{ summary.checkInDate | date: 'd MMM, y':'UTC' }}
+          </span>
+          <span>
+            <mat-icon>flight_takeoff</mat-icon>
+            Salida: {{ summary.checkOutDate | date: 'd MMM, y':'UTC' }}
+          </span>
+        </div>
+
+    <div class="top-grid">
+      <article class="info-box promo-box">
+        <h3>Promociones Aplicadas</h3>
+        <ul>
+          @for (promo of summary.promotionsApplied; track promo) {
+          <li>{{ promo }}</li>
+          } @empty {
+          <li>Sin promociones aplicadas</li>
+          }
+        </ul>
+      </article>
+
+      <article class="info-box price-box">
+        <h3>Costo de la reserva</h3>
+        <p><span>Costo:</span> {{ summary.baseCost | currency }}</p>
+        <p><span>Descuento:</span> {{ summary.estimatedDiscount | currency }}</p>
+        <p class="final"><span>Costo Final:</span> {{ summary.finalCost | currency }}</p>
+      </article>
+    </div>
+
+    <section class="section-block">
+      <h3>Habitaciones seleccionadas</h3>
+      <ul>
+        @for (room of summary.roomsSelected; track room._id; let i = $index) {
+        <li>
+          {{ getRoomLabel(i, room.name) }} - Capacidad {{ room.capacity }} - {{ room.price | currency }}
+        </li>
+        }
+      </ul>
+    </section>
+
+    <section class="section-block">
+      <h3>Política de Cancelación</h3>
+      <p>- {{summary.cancellationPolicy}}</p>
+      <p>
+        - Si la fecha de cancelación no aplica, la transacción será rechazada y se cubrirán todos los pagos.
+      </p>
+    </section>
+
+    <div class="actions">
+      <button class="secondary-btn" (click)="cancel()">Cancelar</button>
+      <button class="primary-btn" [disabled]="isSubmitting()" (click)="confirmReservation()">
+        @if (isSubmitting()) {
+        <span class="spinner"></span> Procesando...
+        } @else {
+        Confirmar Reserva <mat-icon>calendar_month</mat-icon>
+        }
+      </button>
+    </div>
+  </section>
+  }
+  }
+</div>

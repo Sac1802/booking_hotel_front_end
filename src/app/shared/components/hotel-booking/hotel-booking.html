@@ -1,0 +1,129 @@
+<div class="booking-container">
+    <section class="hotel-top-card">
+        <div class="hotel-main">
+            <div class="hotel-avatar">
+                <mat-icon>apartment</mat-icon>
+            </div>
+
+            <div class="hotel-content">
+                <h2 class="hotel-title">{{ detailsHotel?.name || 'Cargando Hotel...' }}</h2>
+                <p class="location-hotel">
+                    <mat-icon>location_on</mat-icon>
+                    {{ detailsHotel?.city || 'Ubicación no disponible' }}
+                </p>
+                <p class="description-hotel">{{ detailsHotel?.description || 'Sin descripción disponible.' }}</p>
+            </div>
+        </div>
+
+        <aside class="promotion-section">
+            <p class="promo-title">Promociones Disponibles</p>
+            <ul class="promotion-list">
+                @for (promo of getHotelPromotions(); track promo) {
+                <li class="promo-item"><span class="promo-dot"></span>{{ promo }}</li>
+                } @empty {
+                <li class="promo-item"><span class="promo-dot"></span>Sin promociones disponibles</li>
+                }
+            </ul>
+        </aside>
+    </section>
+
+    <section class="booking-header">
+        <div class="header-item">
+            <span class="label">Fechas de Estancia</span>
+            <div class="value-group">
+                <label class="field-chip">
+                    <mat-icon>event</mat-icon>
+                    <span class="field-text">Llegada</span>
+                    <input
+                        type="date"
+                        [ngModel]="dates().checkIn"
+                        (ngModelChange)="updateDates('checkIn', $event)"
+                    >
+                </label>
+                <label class="field-chip">
+                    <mat-icon>event_available</mat-icon>
+                    <span class="field-text">Salida</span>
+                    <input
+                        type="date"
+                        [ngModel]="dates().checkOut"
+                        (ngModelChange)="updateDates('checkOut', $event)"
+                        [min]="dates().checkIn"
+                    >
+                </label>
+            </div>
+        </div>
+
+        <div class="header-item">
+            <span class="label">Huéspedes</span>
+            <div class="value-group">
+                <label class="field-chip guest-field">
+                    <mat-icon>person</mat-icon>
+                    <span class="field-text">Adultos</span>
+                    <input type="number" min="1" [ngModel]="adults()" (ngModelChange)="adults.set($event)">
+                </label>
+                <label class="field-chip guest-field">
+                    <mat-icon>child_care</mat-icon>
+                    <span class="field-text">Niños</span>
+                    <input type="number" min="0" [ngModel]="children()" (ngModelChange)="children.set($event)">
+                </label>
+            </div>
+        </div>
+    </section>
+
+    @if (initialSuggestedRooms().length > 0) {
+    <section class="suggested-rooms-section">
+        <div class="section-header">
+            <h2><mat-icon>star</mat-icon> Habitaciones Sugeridas</h2>
+        </div>
+
+        <div class="rooms-grid">
+            @for (room of initialSuggestedRooms(); track getRoomTrackBy(room)) {
+            <app-room 
+                class="suggested-room-card" 
+                [room]="room" 
+                [isSuggested]="true"
+                [isSelected]="isRoomSelected(room)" 
+                (bookClick)="toggleRoom($event)" 
+            />
+            }
+        </div>
+    </section>
+    }
+
+    <section class="available-rooms-section">
+        <div class="section-header">
+            <h2>Habitaciones Disponibles</h2>
+        </div>
+
+        @if (availableRooms().length > 0) {
+        <div class="rooms-grid scroll-area">
+            @for (room of availableRooms(); track getRoomTrackBy(room)) {
+            <app-room 
+                [room]="room" 
+                [isSuggested]="false" 
+                [isSelected]="isRoomSelected(room)"
+                (bookClick)="toggleRoom($event)" 
+            />
+            }
+        </div>
+        } @else {
+        <div class="no-rooms">
+            <mat-icon>sentiment_dissatisfied</mat-icon>
+            <p>No encontramos habitaciones para estas fechas o cantidad de personas.</p>
+        </div>
+        }
+    </section>
+
+    @if (userSelectedRooms().length > 0) {
+    <div class="booking-summary">
+        <div class="summary-details">
+            <span class="rooms-count">{{ userSelectedRooms().length }} habitación(es) seleccionada(s)</span>
+            <span class="total-price">Total: {{ getTotalPrice() | currency }}</span>
+        </div>
+        <button class="checkout-btn" (click)="proceedToCheckout()">
+            <mat-icon>check_circle</mat-icon>
+            Confirmar Reserva
+        </button>
+    </div>
+    }
+</div>

@@ -9,6 +9,17 @@
   flex: 1;
   min-width: 200px;
   max-width: 300px;
+  position: relative;
+}
+
+:host(.booking-room-card) .room-card {
+  max-width: none;
+  min-width: 0;
+  padding: 10px 11px;
+}
+
+:host(.suggested-room-card) .room-card:not(.selected) {
+  border: 2px solid var(--mat-sys-tertiary);
 }
 
 .room-header {
@@ -23,9 +34,14 @@
   border: 2px solid var(--mat-sys-tertiary);
 }
 
+.room-card.suggested {
+  border: 2px solid #ff9800;
+  background: linear-gradient(135deg, #fff8e1 0%, #ffffff 100%);
+}
+
 .room-name {
   margin: 0;
-  font-size: 1.15rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--mat-sys-primary);
 }
@@ -40,7 +56,7 @@
   display: flex;
   align-items: center; 
   gap: 12px;
-  font-size: 0.9rem;
+  font-size: 0.76rem;
   color: #7f8c8d;
 }
 
@@ -60,11 +76,11 @@
 .price {
   font-weight: 800;
   color: var(--mat-sys-primary);
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 .room-description {
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   color: #555;
   line-height: 1.4;
   margin: 0;
@@ -79,12 +95,30 @@
   border-radius: 8px;
   color: var(--mat-sys-tertiary);
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.72rem;
   transition: all 0.2s ease;
+  background: transparent;
+  cursor: pointer;
 }
 
-.book-btn input {
-  display: none;
+.book-btn:hover {
+  background: var(--mat-sys-tertiary);
+  color: white;
+}
+
+.book-btn.active {
+  background: var(--mat-sys-tertiary);
+  color: white;
+}
+
+.book-btn.suggested-btn {
+  border-color: #ff9800;
+  color: #ff9800;
+}
+
+.book-btn.suggested-btn:hover {
+  background: #ff9800;
+  color: white;
 }
 
 .circle {
@@ -92,9 +126,11 @@
   height: 14px;
   border: 2px solid currentColor;
   border-radius: 50%;
+  transition: all 0.2s ease;
 }
 
-.book-btn:has(input:checked) {
-  background: var(--mat-sys-tertiary);
-  color: white;
+.circle.checked {
+  background: white;
+  transform: scale(0.8);
 }
+

@@ -1,23 +1,32 @@
-<div class="room-card" [class.selected]="book.checked">
+<div 
+  class="room-card" 
+  [class.selected]="isSelected()"
+  [class.suggested]="isSuggested() && !isSelected()"
+>
   <div class="room-header">
     <div class="room-title-group">
-      <h3 class="room-name">{{ room().name }}</h3>
+      <h3 class="room-name">{{ room().name || room().type || 'Habitación' }}</h3>
       <div class="room-meta">
         <span class="capacity">
           <mat-icon>groups</mat-icon> Capacidad: {{ room().capacity }}
         </span>
-        <span class="price">{{ room().price | currency}}$</span>
+        <span class="price">{{ room().price | currency }}</span>
       </div>
     </div>
 
-    <label class="book-btn">
-      <input type="checkbox" #book>
-      <span class="circle"></span>
-      Book
-    </label>
+    <button 
+      class="book-btn" 
+      [class.active]="isSelected()"
+      [class.suggested-btn]="isSuggested() && !isSelected()"
+      (click)="onBookClick($event)"
+      type="button"
+    >
+      <span class="circle" [class.checked]="isSelected()"></span>
+      {{ isSelected() ? 'Selected' : 'Book' }}
+    </button>
   </div>
 
   <p class="room-description">
-    <strong>Descripción:</strong> {{ room().description }}
+    <strong>Descripción:</strong> {{ room().description || 'Sin descripción disponible' }}
   </p>
 </div>

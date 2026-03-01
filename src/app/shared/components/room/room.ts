@@ -12,4 +12,15 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class Room {
   room = input.required<RoomSuggestion>();
+
+  isSelected = input<boolean>(false);
+  
+  isSuggested = input<boolean>(false);
+  
+  bookClick = output<RoomSuggestion>();
+
+  onBookClick(event: Event) {
+    event.stopPropagation();
+    this.bookClick.emit(this.room());
+  }
 }

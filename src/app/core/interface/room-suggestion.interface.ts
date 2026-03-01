@@ -1,5 +1,6 @@
 export interface RoomSuggestion {
-    id: string;
+    id?: string;
+    _id?: string;
     name?: string;
     capacity: number;
     price: number;

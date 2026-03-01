@@ -11,12 +11,14 @@ export class SearchService {
   private urlBase = 'http://localhost:3000';
 
   searchResult = signal<SearchResult[]>([]);
+  lastFilter = signal<RoomFilter | null>(null);
   isLoading = signal<boolean>(false);
   error = signal<string | null>(null);
 
   search(params: RoomFilter): void {
     this.isLoading.set(true);
     this.error.set(null);
+    this.lastFilter.set(params);
     let httpParam = new HttpParams();
 
     for (const filterKey in params) {

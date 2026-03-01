@@ -27,7 +27,7 @@
 
 
         <div class="action">
-            <button class="btn-book">
+            <button [routerLink]="['hotel', idHotel(), 'book']" [state]="bookingState()" class="btn-book">
                 <mat-icon>calendar_month</mat-icon>
                 Book
             </button>
