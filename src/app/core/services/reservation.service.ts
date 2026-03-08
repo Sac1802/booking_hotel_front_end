@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { PreBooking } from '../interface/pre-booking.interface';
 import { ReservationSummary } from '../interface/reservation-summary.interface';
+import { Booking } from '../interface/booking.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ReservationService {
@@ -31,5 +32,24 @@ export class ReservationService {
           return throwError(() => error);
         }),
       );
+  }
+
+  getUserBookings(): Observable<Booking[]> {
+    return this.http.get<Booking[]>('http://localhost:3000/reservation/bookings').pipe(
+      catchError((error) => {
+        console.error('Error get bookings', error);
+        return throwError(() => error);
+      }),
+    );
+  }
+
+  cancelBooking(id: string): Observable<string> {
+    return this.http.patch<string>(`http://localhost:3000/reservation/bookings/${id}/cancel`, {}).pipe(
+      catchError((err) => {
+        console.log(err);
+        console.error('Error calcel booking', err);
+        return throwError(() => err);
+      }),
+    );
   }
 }

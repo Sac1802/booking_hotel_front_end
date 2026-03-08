@@ -1,1 +1,25 @@
-<p>dashboard works!</p>
+<div class="dashboard">
+  <h2 class="title">Reservas</h2>
+
+  @if (isLoading()) {
+  <p class="state-message">Cargando reservas...</p>
+  }
+
+  @if (!isLoading() && bookings().length === 0) {
+  <p class="state-message">Aun no tienes reservas registradas.</p>
+  }
+
+  <section class="bookings-list">
+    @for (item of bookings(); track item.reservationIds[0]) {
+    <app-booking-card [booking]="item" [isCancelling]="isDisabled(item.reservationIds)" (cancel)="handleCancel($event)">
+    </app-booking-card>
+    }
+  </section>
+
+  @if (error()) {
+  <div class="error-banner">
+    <mat-icon>error_outline</mat-icon>
+    {{ error() }}
+  </div>
+  }
+</div>

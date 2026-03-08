@@ -1,0 +1,40 @@
+<article class="booking-card">
+  <div class="thumb">
+    <mat-icon>image</mat-icon>
+  </div>
+
+  <div class="booking-content">
+    <div class="booking-head">
+      <div>
+        <p class="label">Nombre del Hotel</p>
+        <h3 class="hotel-name">{{ booking().hotelName }}</h3>
+        <p class="status-line">
+          Estado:
+          <span class="status-value">{{ statusLabel() }}</span>
+        </p>
+        <p class="date-line">Fecha de inicio: {{ formatDateUtc(booking().checkIn) }}</p>
+      </div>
+
+      @if (canCancel()) {
+      <button
+        type="button"
+        class="cancel-btn"
+        [disabled]="isCancelling()"
+        (click)="onCancel()">
+        <mat-icon>close</mat-icon>
+        Cancelar
+      </button>
+      }
+    </div>
+
+    <div class="rooms-block">
+      <p class="label">Habitaciones seleccionadas</p>
+      @for (room of booking().rooms; track room.id) {
+      <p class="room-line">
+        <span>{{ room.name }}</span>
+        <span class="room-status">{{ statusLabel($index) }}</span>
+      </p>
+      }
+    </div>
+  </div>
+</article>
