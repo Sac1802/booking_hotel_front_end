@@ -1,10 +1,21 @@
+@use '../../../../variables' as global;
+
 .layout {
   display: flex;
   height: 100%;
+  --bottom-nav-height: 0px;
+  overflow-x: hidden;
+
+  @media (max-width: global.$bp-tablet) {
+    flex-direction: column-reverse; /* Bottom navigation on mobile */
+    --bottom-nav-height: 72px;
+  }
 }
 
 .content {
   flex: 1;
   padding: 0;
   background: #fff;
+  overflow-y: auto; /* Handle scrolling within content area */
+  padding-bottom: calc(var(--bottom-nav-height) + env(safe-area-inset-bottom));
 }

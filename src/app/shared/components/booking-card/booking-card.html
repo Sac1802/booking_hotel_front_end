@@ -1,24 +1,24 @@
 <article class="booking-card">
-  <div class="thumb">
+  <div class="booking-card__thumb">
     <mat-icon>image</mat-icon>
   </div>
 
-  <div class="booking-content">
-    <div class="booking-head">
+  <div class="booking-card__content">
+    <div class="booking-card__head">
       <div>
-        <p class="label">Nombre del Hotel</p>
-        <h3 class="hotel-name">{{ booking().hotelName }}</h3>
-        <p class="status-line">
+        <p class="booking-card__label">Nombre del Hotel</p>
+        <h3 class="booking-card__hotel-name">{{ booking().hotelName }}</h3>
+        <p class="booking-card__status-line">
           Estado:
-          <span class="status-value">{{ statusLabel() }}</span>
+          <span class="booking-card__status-value">{{ statusLabel() }}</span>
         </p>
-        <p class="date-line">Fecha de inicio: {{ formatDateUtc(booking().checkIn) }}</p>
+        <p class="booking-card__date-line">Fecha de inicio: {{ formatDateUtc(booking().checkIn) }}</p>
       </div>
 
       @if (canCancel()) {
       <button
         type="button"
-        class="cancel-btn"
+        class="booking-card__cancel-btn"
         [disabled]="isCancelling()"
         (click)="onCancel()">
         <mat-icon>close</mat-icon>
@@ -27,12 +27,12 @@
       }
     </div>
 
-    <div class="rooms-block">
-      <p class="label">Habitaciones seleccionadas</p>
+    <div class="booking-card__rooms-block">
+      <p class="booking-card__label">Habitaciones seleccionadas</p>
       @for (room of booking().rooms; track room.id) {
-      <p class="room-line">
-        <span>{{ room.name }}</span>
-        <span class="room-status">{{ statusLabel($index) }}</span>
+      <p class="booking-card__room-line">
+        <span class="booking-card__room-name">{{ room.name }}</span>
+        <span class="booking-card__room-status">{{ statusLabel($index) }}</span>
       </p>
       }
     </div>

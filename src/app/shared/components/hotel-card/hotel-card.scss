@@ -1,3 +1,5 @@
+@use '../../../../variables' as global;
+
 .hotel-card {
     background: #fff;
     border-radius: 10px;
@@ -5,164 +7,247 @@
     padding: 14px 16px;
     margin: 0 0 10px 0;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
-}
 
-.hotel-header {
-    display: flex;
-    align-items: stretch;
-    gap: 14px;
-}
-
-.hotel-icon {
-    flex-shrink: 0;
-    width: 110px;
-    min-height: 110px;
-    background: var(--mat-sys-primary);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    .icon-image {
-        font-size: 52px;
-        width: 52px;
-        height: 52px;
-        color: #ffffff;
-    }
-}
-
-.hotel-info {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.name-hotel {
-    margin: 0 0 2px 0;
-    color: var(--mat-sys-primary);
-    font-size: 1.1rem;
-    font-weight: 700;
-}
-
-.location-hotel {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-    font-size: 0.82rem;
-    color: var(--mat-sys-primary);
-    margin: 0 0 6px 0;
-
-    mat-icon {
-        font-size: 15px;
-        width: 15px;
-        height: 15px;
-    }
-}
-
-.desc-hotel {
-    font-size: 0.82rem;
-    color: #444;
-    margin: 0;
-    line-height: 1.55;
-}
-
-.promotion-section {
-    flex-shrink: 0;
-    width: 200px;
-    border-left: 1px solid #e8e8e8;
-    padding-left: 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.promo-title {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--mat-sys-primary);
-    margin: 0 0 8px 0;
-}
-
-.promotion-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.promo-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.76rem;
-    color: #333;
-    line-height: 1.3;
-}
-
-.promo-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--mat-sys-tertiary);
-    flex-shrink: 0;
-}
-
-.action {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    padding-left: 14px;
-}
-
-.btn-book {
-    background-color: var(--mat-sys-tertiary);
-    color: white;
-    border: none;
-    padding: 14px 20px;
-    border-radius: 10px;
-    font-weight: bold;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.9rem;
-    transition: opacity 0.2s;
-    min-width: 64px;
-    height: 90px;
-    justify-content: center;
-
-    mat-icon {
-        font-size: 30px;
-        width: 30px;
-        height: 30px;
+    &__header {
+        display: flex;
+        align-items: stretch;
+        gap: 14px;
     }
 
-    &:hover {
-        opacity: 0.85;
+    &__icon-wrap {
+        flex-shrink: 0;
+        width: 110px;
+        min-height: 110px;
+        background: global.$color-primary;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .hotel-card__icon {
+            font-size: 52px;
+            width: 52px;
+            height: 52px;
+            color: #ffffff;
+        }
     }
-}
 
-.suggestion-section {
-    display: flex;
-    flex-direction: column;
-    margin-top: 14px;
-    border-top: 1px solid #f0f0f0;
-    padding-top: 12px;
-}
+    &__info {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 
-.rooms-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: flex-start; 
-    margin-bottom: 14px;
-}
+    &__name {
+        margin: 0 0 2px 0;
+        color: global.$color-primary;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
 
-.total-price{
-    color: var(--mat-sys-primary);
-    font-weight: bold;
+    &__location {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 0.82rem;
+        color: global.$color-primary;
+        margin: 0 0 6px 0;
+
+        mat-icon {
+            font-size: 15px;
+            width: 15px;
+            height: 15px;
+        }
+    }
+
+    &__description {
+        font-size: 0.82rem;
+        color: #444;
+        margin: 0;
+        line-height: 1.55;
+    }
+
+    &__promo-section {
+        flex-shrink: 0;
+        width: 200px;
+        border-left: 1px solid #e8e8e8;
+        padding-left: 14px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__promo-title {
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: global.$color-primary;
+        margin: 0 0 8px 0;
+    }
+
+    &__promo-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    &__promo-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.76rem;
+        color: #333;
+        line-height: 1.3;
+    }
+
+    &__promo-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: global.$color-tertiary;
+        flex-shrink: 0;
+    }
+
+    &__action {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        padding-left: 14px;
+    }
+
+    &__btn-book {
+        background-color: global.$color-tertiary;
+        color: white;
+        border: none;
+        padding: 14px 20px;
+        border-radius: 10px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        font-size: 0.9rem;
+        transition: opacity 0.2s;
+        min-width: 64px;
+        height: 90px;
+        justify-content: center;
+        cursor: pointer;
+
+        mat-icon {
+            font-size: 30px;
+            width: 30px;
+            height: 30px;
+        }
+
+        &:hover {
+            opacity: 0.85;
+        }
+    }
+
+    &__suggestion-section {
+        display: flex;
+        flex-direction: column;
+        margin-top: 14px;
+        border-top: 1px solid #f0f0f0;
+        padding-top: 12px;
+    }
+
+    &__rooms-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: flex-start; 
+        margin-bottom: 14px;
+    }
+
+    &__total-price {
+        color: global.$color-primary;
+        font-weight: bold;
+    }
+
+    @media (max-width: global.$bp-desktop) {
+        &__header {
+            flex-wrap: wrap;
+        }
+
+        &__promo-section {
+            width: 100%;
+            border-left: none;
+            border-top: 1px solid #e8e8e8;
+            padding-left: 0;
+            padding-top: 12px;
+            margin-top: 6px;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        &__promo-list {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 12px;
+            flex: 1;
+        }
+
+        &__promo-title {
+            margin: 0 12px 0 0;
+        }
+    }
+
+    @media (max-width: global.$bp-mobile) {
+        &__header {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        &__icon-wrap {
+            width: 100%;
+            min-height: 140px;
+
+            .hotel-card__icon {
+                font-size: 64px;
+                width: 64px;
+                height: 64px;
+            }
+        }
+
+        &__promo-section {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &__promo-title {
+            margin: 0 0 8px 0;
+        }
+
+        &__promo-list {
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        &__action {
+            padding-left: 0;
+            width: 100%;
+            border-top: 1px solid #e8e8e8;
+            padding-top: 12px;
+            margin-top: 6px;
+        }
+
+        &__btn-book {
+            width: 100%;
+            flex-direction: row;
+            height: 48px;
+
+            mat-icon {
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+        }
+    }
 }

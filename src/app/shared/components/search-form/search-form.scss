@@ -1,3 +1,5 @@
+@use '../../../../variables' as global;
+
 .search-form {
   width: 220px;
   display: flex;
@@ -6,6 +8,13 @@
   height: 100%;
   padding: 24px 16px;
   border-right: 1px solid rgba(0, 0, 0, 0.08);
+
+  @media (max-width: global.$bp-desktop) {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
 }
 
 .search-title {
@@ -20,12 +29,38 @@ form {
   display: flex;
   flex-direction: column;
   gap: 14px;
+
+  @media (max-width: global.$bp-desktop) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end; /* Align inputs to button visually */
+  }
+
+  @media (max-width: global.$bp-mobile) {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  @media (max-width: global.$bp-tablet) {
+    flex-direction: column;
+    align-items: stretch;
+  }
 }
 
 .field-group {
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  @media (max-width: global.$bp-desktop) {
+    flex: 1;
+    min-width: 150px;
+  }
+
+  @media (max-width: global.$bp-tablet) {
+    width: 100%;
+    min-width: 0;
+  }
 }
 
 .field-label {
@@ -44,11 +79,23 @@ form {
   border-radius: 10px;
   padding: 10px 12px;
   background: #fffdf5;
+
+  @media (max-width: global.$bp-mobile) {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: global.$bp-tablet) {
+    width: 100%;
+  }
 }
 
 .date-info {
   display: flex;
   flex-direction: column;
+
+  @media (max-width: global.$bp-mobile) {
+    width: 100%;
+  }
 
   .date-label {
     font-size: 11px;
@@ -64,6 +111,10 @@ form {
     color: #1a1a2e;
     outline: none;
     padding: 0;
+
+    @media (max-width: global.$bp-mobile) {
+      width: 100%;
+    }
   }
 }
 
@@ -201,5 +252,10 @@ button[type='submit'] {
 
   &:hover {
     background: var(--mat-sys-tertiary);
+  }
+
+  @media (max-width: global.$bp-desktop) {
+    flex: 1;
+    min-width: 100%;
   }
 }

@@ -1,16 +1,31 @@
+@use '../../../variables' as global;
+
 .home-container {
     display: flex;
     align-items: flex-start;
     height: 100%;
+
+    @media (max-width: global.$bp-desktop) {
+        flex-direction: column; /* Stack search top, results bottom on mobile/tablet */
+    }
 }
 
 .filters-panel {
     flex-shrink: 0;
     height: 100%;
+
+    @media (max-width: global.$bp-desktop) {
+        width: 100%;
+        height: auto;
+    }
 }
 
 .results-panel {
     flex: 1;
     min-width: 0;
     padding: 24px;
+
+    @media (max-width: global.$bp-mobile) {
+        padding: 12px; /* Less padding on small screens */
+    }
 }

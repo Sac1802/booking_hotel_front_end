@@ -1,48 +1,48 @@
-<div class="booking-container">
-    <section class="hotel-top-card">
-        <div class="hotel-main">
-            <div class="hotel-avatar">
+<div class="hotel-booking">
+    <section class="hotel-booking__top-card">
+        <div class="hotel-booking__main-info">
+            <div class="hotel-booking__avatar">
                 <mat-icon>apartment</mat-icon>
             </div>
 
-            <div class="hotel-content">
-                <h2 class="hotel-title">{{ detailsHotel?.name || 'Cargando Hotel...' }}</h2>
-                <p class="location-hotel">
+            <div class="hotel-booking__content">
+                <h2 class="hotel-booking__title">{{ detailsHotel?.name || 'Cargando Hotel...' }}</h2>
+                <p class="hotel-booking__location">
                     <mat-icon>location_on</mat-icon>
                     {{ detailsHotel?.city || 'Ubicación no disponible' }}
                 </p>
-                <p class="description-hotel">{{ detailsHotel?.description || 'Sin descripción disponible.' }}</p>
+                <p class="hotel-booking__description">{{ detailsHotel?.description || 'Sin descripción disponible.' }}</p>
             </div>
         </div>
 
-        <aside class="promotion-section">
-            <p class="promo-title">Promociones Disponibles</p>
-            <ul class="promotion-list">
+        <aside class="hotel-booking__promo-section">
+            <p class="hotel-booking__promo-title">Promociones Disponibles</p>
+            <ul class="hotel-booking__promo-list">
                 @for (promo of getHotelPromotions(); track promo) {
-                <li class="promo-item"><span class="promo-dot"></span>{{ promo }}</li>
+                <li class="hotel-booking__promo-item"><span class="hotel-booking__promo-dot"></span>{{ promo }}</li>
                 } @empty {
-                <li class="promo-item"><span class="promo-dot"></span>Sin promociones disponibles</li>
+                <li class="hotel-booking__promo-item"><span class="hotel-booking__promo-dot"></span>Sin promociones disponibles</li>
                 }
             </ul>
         </aside>
     </section>
 
-    <section class="booking-header">
-        <div class="header-item">
-            <span class="label">Fechas de Estancia</span>
-            <div class="value-group">
-                <label class="field-chip">
+    <section class="hotel-booking__header">
+        <div class="hotel-booking__header-item">
+            <span class="hotel-booking__label">Fechas de Estancia</span>
+            <div class="hotel-booking__value-group">
+                <label class="hotel-booking__field-chip">
                     <mat-icon>event</mat-icon>
-                    <span class="field-text">Llegada</span>
+                    <span class="hotel-booking__field-text">Llegada</span>
                     <input
                         type="date"
                         [ngModel]="dates().checkIn"
                         (ngModelChange)="updateDates('checkIn', $event)"
                     >
                 </label>
-                <label class="field-chip">
+                <label class="hotel-booking__field-chip">
                     <mat-icon>event_available</mat-icon>
-                    <span class="field-text">Salida</span>
+                    <span class="hotel-booking__field-text">Salida</span>
                     <input
                         type="date"
                         [ngModel]="dates().checkOut"
@@ -53,17 +53,17 @@
             </div>
         </div>
 
-        <div class="header-item">
-            <span class="label">Huéspedes</span>
-            <div class="value-group">
-                <label class="field-chip guest-field">
+        <div class="hotel-booking__header-item">
+            <span class="hotel-booking__label">Huéspedes</span>
+            <div class="hotel-booking__value-group">
+                <label class="hotel-booking__field-chip hotel-booking__guest-field">
                     <mat-icon>person</mat-icon>
-                    <span class="field-text">Adultos</span>
+                    <span class="hotel-booking__field-text">Adultos</span>
                     <input type="number" min="1" [ngModel]="adults()" (ngModelChange)="adults.set($event)">
                 </label>
-                <label class="field-chip guest-field">
+                <label class="hotel-booking__field-chip hotel-booking__guest-field">
                     <mat-icon>child_care</mat-icon>
-                    <span class="field-text">Niños</span>
+                    <span class="hotel-booking__field-text">Niños</span>
                     <input type="number" min="0" [ngModel]="children()" (ngModelChange)="children.set($event)">
                 </label>
             </div>
@@ -71,15 +71,15 @@
     </section>
 
     @if (initialSuggestedRooms().length > 0) {
-    <section class="suggested-rooms-section">
-        <div class="section-header">
+    <section class="hotel-booking__suggested-rooms">
+        <div class="hotel-booking__section-header">
             <h2><mat-icon>star</mat-icon> Habitaciones Sugeridas</h2>
         </div>
 
-        <div class="rooms-grid">
+        <div class="hotel-booking__rooms-grid">
             @for (room of initialSuggestedRooms(); track getRoomTrackBy(room)) {
             <app-room 
-                class="suggested-room-card" 
+                class="hotel-booking__suggested-room-card" 
                 [room]="room" 
                 [isSuggested]="true"
                 [isSelected]="isRoomSelected(room)" 
@@ -90,13 +90,13 @@
     </section>
     }
 
-    <section class="available-rooms-section">
-        <div class="section-header">
+    <section class="hotel-booking__available-rooms">
+        <div class="hotel-booking__section-header">
             <h2>Habitaciones Disponibles</h2>
         </div>
 
         @if (availableRooms().length > 0) {
-        <div class="rooms-grid scroll-area">
+        <div class="hotel-booking__rooms-grid hotel-booking__scroll-area">
             @for (room of availableRooms(); track getRoomTrackBy(room)) {
             <app-room 
                 [room]="room" 
@@ -107,7 +107,7 @@
             }
         </div>
         } @else {
-        <div class="no-rooms">
+        <div class="hotel-booking__no-rooms">
             <mat-icon>sentiment_dissatisfied</mat-icon>
             <p>No encontramos habitaciones para estas fechas o cantidad de personas.</p>
         </div>
@@ -115,12 +115,12 @@
     </section>
 
     @if (userSelectedRooms().length > 0) {
-    <div class="booking-summary">
-        <div class="summary-details">
-            <span class="rooms-count">{{ userSelectedRooms().length }} habitación(es) seleccionada(s)</span>
-            <span class="total-price">Total: {{ getTotalPrice() | currency }}</span>
+    <div class="hotel-booking__summary">
+        <div class="hotel-booking__summary-details">
+            <span class="hotel-booking__rooms-count">{{ userSelectedRooms().length }} habitación(es) seleccionada(s)</span>
+            <span class="hotel-booking__total-price">Total: {{ getTotalPrice() | currency }}</span>
         </div>
-        <button class="checkout-btn" (click)="proceedToCheckout()">
+        <button class="hotel-booking__checkout-btn" (click)="proceedToCheckout()">
             <mat-icon>check_circle</mat-icon>
             Confirmar Reserva
         </button>
