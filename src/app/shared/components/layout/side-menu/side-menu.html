@@ -1,6 +1,6 @@
 <aside class="sidemenu">
     <div class="brand">
-        <mat-icon class="hotel-icon" svgIcon="solid_hotel"></mat-icon>
+        <mat-icon [routerLink]="['/']" class="hotel-icon" svgIcon="solid_hotel"></mat-icon>
         <h2 class="brand-title">Traveler</h2>
     </div>
 
@@ -16,6 +16,9 @@
         }@else {
         <a (click)="logout()" routerLink="/" class="logout">
             Cerrar sesión
+        </a>
+        <a routerLink="/user" class="booking">
+            Mis Reservas
         </a>
         }
     </div>

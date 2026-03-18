@@ -1,0 +1,54 @@
+<div class="search-form">
+    <h2 class="search-title">Buscador</h2>
+
+    <form (submit)="$event.preventDefault(); emitSearch()">
+
+        <div class="date-card">
+            <mat-icon class="date-icon">flight_land</mat-icon>
+            <div class="date-info">
+                <label class="date-label">Llegada</label>
+                <input type="date" [(ngModel)]="filter.startDate" name="startDate">
+            </div>
+        </div>
+
+        <div class="date-card">
+            <mat-icon class="date-icon">flight_takeoff</mat-icon>
+            <div class="date-info">
+                <label class="date-label">Salida</label>
+                <input type="date" [(ngModel)]="filter.endDate" name="endDate">
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Buscar habitación por cantidad de personas</label>
+            <input type="number" [(ngModel)]="filter.peopleCount" name="peopleCount" min="1">
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Rango de Precio</label>
+            <mat-slider min="0" max="1000" step="10" class="price-slider">
+                <input matSliderStartThumb [(ngModel)]="filter.minPrice" name="minPrice">
+                <input matSliderEndThumb [(ngModel)]="filter.maxPrice" name="maxPrice">
+            </mat-slider>
+            <div class="price-labels">
+                <span>{{ filter.minPrice ?? 0 }}$</span>
+                <span>{{ filter.maxPrice ?? 1000 }}$</span>
+            </div>
+        </div>
+
+        <div class="field-group">
+            <label class="field-label">Ubicaciones Disponibles</label>
+            <div class="location-list">
+                @for (location of availableLocations(); track location) {
+                <label class="location-item">
+                    <input type="radio" name="city" [(ngModel)]="filter.city" [value]="location">
+                    <span class="radio-custom"></span>
+                    {{ location }}
+                </label>
+                }
+            </div>
+        </div>
+
+        <button type="submit">Buscar</button>
+    </form>
+</div>

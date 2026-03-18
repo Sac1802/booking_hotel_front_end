@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { Layout } from './layout/layout/layout';
+import { Layout } from './shared/components/layout/layout';
 
 export const routes: Route[] = [
   {
@@ -17,6 +17,15 @@ export const routes: Route[] = [
       {
         path: 'user',
         loadChildren: () => import('./features/user/user.routes').then(m => m.userRoutes)
+      },
+      {
+        path: 'hotel/:id/book',
+        loadChildren: () =>
+          import('./shared/components/hotel-booking/hotel-booking.routes').then((m) => m.hotelBookingRoutes),
+      },
+      {
+        path: 'bookings/details',
+        loadChildren: () => import('./shared/components/booking-details/booking-details.routes').then((m) => m.bookingDetailsRoutes)
       }
     ]
   }

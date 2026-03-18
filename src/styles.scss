@@ -4,11 +4,24 @@
 
 $theme: mat.define-theme();
 
+$color-primary: #1E3D58;
+$color-tertiary: #CDA349;
+
+$bp-mobile: 760px;
+$bp-tablet: 900px;
+$bp-desktop: 1000px;
+
+$font-family-main: 'Encode Sans Semi Condensed', sans-serif;
+
 html {
   @include mat.all-component-themes($theme);
   
-  --mat-sys-primary: #1E3D58;
-  --mat-sys-tertiary: #CDA349;
+  --mat-sys-primary: #{$color-primary};
+  --mat-sys-tertiary: #{$color-tertiary};
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {

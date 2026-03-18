@@ -1,0 +1,51 @@
+<article class="hotel-card">
+    <div class="hotel-card__header">
+
+        <div class="hotel-card__icon-wrap">
+            <mat-icon class="hotel-card__icon">image</mat-icon>
+        </div>
+
+        <div class="hotel-card__info">
+            <h2 class="hotel-card__name">{{name()}}</h2>
+            @if (location()) {
+            <p class="hotel-card__location">
+                <mat-icon>location_on</mat-icon> {{location()}}
+            </p>
+            }
+            <p class="hotel-card__description">{{description()}}</p>
+        </div>
+
+        <div class="hotel-card__promo-section">
+            <p class="hotel-card__promo-title">Promociones Disponibles</p>
+            <ul class="hotel-card__promo-list">
+                <li class="hotel-card__promo-item"><span class="hotel-card__promo-dot"></span>Carnaval</li>
+                <li class="hotel-card__promo-item"><span class="hotel-card__promo-dot"></span>Familias de más de 8 integrantes</li>
+                <li class="hotel-card__promo-item"><span class="hotel-card__promo-dot"></span>Niños menores de 5 años no pagan estadía</li>
+                <li class="hotel-card__promo-item"><span class="hotel-card__promo-dot"></span>Desayunos incluidos</li>
+            </ul>
+        </div>
+
+
+        <div class="hotel-card__action">
+            <button [routerLink]="['hotel', idHotel(), 'book']" [state]="bookingState()" class="hotel-card__btn-book">
+                <mat-icon>calendar_month</mat-icon>
+                Book
+            </button>
+        </div>
+
+    </div>
+
+    @if(suggestion().length > 0){
+    <div class="hotel-card__suggestion-section">
+        <div class="hotel-card__rooms-container">
+            @for (item of suggestion(); track $index) {
+            <app-room [room]="item"></app-room>
+            }
+        </div>
+    </div>
+    }
+
+    @if(totalPrice()){
+        <span class="hotel-card__total-price">Total: {{ totalPrice() | currency }}$</span>
+    }
+</article>

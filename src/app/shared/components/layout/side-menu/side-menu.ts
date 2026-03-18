@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-side-menu',
@@ -14,7 +14,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class SideMenu {
   auth = inject(AuthService);
 
-  logout(){
+  logout() {
     this.auth.logout();
   }
 }
